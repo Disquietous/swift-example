@@ -1,29 +1,25 @@
 workflows:
   ios-workflow:
     name: iOS Workflow
-    max_build_duration: 120
-
-    environment:
-      xcode: latest
-      cocoapods: default
-      vars:
-        XCODE_PROJECT: HelloWorld.xcodeproj
-        XCODE_SCHEME: HelloWorld
+    integrations:
+      app_store_connect: codemagic
 
     scripts:
+      - name: Fetch signing files
+        script: |
+          xcode-project use-profiles
+
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
-            --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --project "HelloWorld.xcodeproj" \
+            --scheme "HelloWorld"
 
     artifacts:
       - $CM_BUILD_DIR/*.ipa
 
-    integrations:
-      app_store_connect: codemagic
-
     publishing:
       app_store_connect:
         auth: integration
+        api_key: codemagic   # 👈 explicitly point at the integration
         submit_to_testflight: true
