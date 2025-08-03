@@ -13,7 +13,7 @@ workflows:
     scripts:
       - name: Build iOS app
         script: |
-          # Let Codemagic manage provisioning automatically
+          # Let Codemagic handle provisioning with the API key
           xcode-project use-profiles
 
           # Build and archive
@@ -25,7 +25,7 @@ workflows:
                      -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
                      -allowProvisioningUpdates
 
-          # Export IPA (Codemagic will handle ExportOptions automatically)
+          # Export IPA
           xcodebuild -exportArchive \
                      -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
                      -exportPath $CM_BUILD_DIR \
@@ -34,13 +34,7 @@ workflows:
     artifacts:
       - $CM_BUILD_DIR/*.ipa
 
-    code_signing:
-      ios:
-        distribution_type: app_store
-        bundle_identifier: "com.disquietous.HelloWorld"
-        provisioning_profiles: automatic
-
     publishing:
       app_store_connect:
-        credentials: codemagic   # 👈 matches your API key name
+        credentials: codemagic   # 👈 must match the integration name exactly
         submit_to_testflight: true
