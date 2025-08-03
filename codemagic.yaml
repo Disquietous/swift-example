@@ -9,6 +9,12 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
+      - name: Fetch signing files (automatic)
+        script: |
+          app-store-connect fetch-signing-files "com.disquietous.HelloWorld" \
+            --platform IOS \
+            --type IOS_APP_STORE \
+            --create
       - name: Build iOS app
         script: |
           # Build and archive
@@ -17,7 +23,9 @@ workflows:
                      -sdk iphoneos \
                      -configuration Release \
                      archive -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive
-                     -allowProvisioningUpdates
+                     -allowProvisioningUpdates \
+                     DEVELOPMENT_TEAM=$CM_DEVELOPER_TEAM \
+                     CODE_SIGN_STYLE=Automatic
 
           # Export IPA
           xcodebuild -exportArchive \
