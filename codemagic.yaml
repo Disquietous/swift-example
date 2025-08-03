@@ -17,6 +17,7 @@ workflows:
                      -sdk iphoneos \
                      -configuration Release \
                      archive -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive
+                     -allowProvisioningUpdates
 
           # Export IPA
           xcodebuild -exportArchive \
