@@ -24,7 +24,8 @@ workflows:
             --scheme "$XCODE_SCHEME"
 
     artifacts:
-      - $CM_BUILD_DIR/*.ipa
+      - $CM_BUILD_DIR/ios/ipa/*.ipa
+      - $CM_BUILD_DIR/ios/ipa/*.dSYM.zip
 
     publishing:
       app_store_connect:
