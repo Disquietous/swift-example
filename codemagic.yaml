@@ -2,6 +2,7 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     max_build_duration: 120
+
     environment:
       vars:
         XCODE_PROJECT: HelloWorld.xcodeproj
@@ -10,18 +11,11 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: Fetch signing files (automatic)
-        script: |
-          app-store-connect fetch-signing-files "com.disquietous.HelloWorld" \
-            --platform IOS \
-            --type IOS_APP_STORE \
-            --create
-            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
-            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
-            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
-
       - name: Build iOS app
         script: |
+          # Let Codemagic manage provisioning automatically
+          xcode-project use-profiles
+
           # Build and archive
           xcodebuild -project $XCODE_PROJECT \
                      -scheme $XCODE_SCHEME \
@@ -29,22 +23,24 @@ workflows:
                      -configuration Release \
                      archive \
                      -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
-                     -allowProvisioningUpdates \
-                     DEVELOPMENT_TEAM=$CM_DEVELOPER_TEAM \
-                     CODE_SIGN_STYLE=Automatic
+                     -allowProvisioningUpdates
 
-          # Export IPA
+          # Export IPA (Codemagic will handle ExportOptions automatically)
           xcodebuild -exportArchive \
                      -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
-                     -exportOptionsPlist ExportOptions.plist \
-                     -exportPath $CM_BUILD_DIR
+                     -exportPath $CM_BUILD_DIR \
+                     -allowProvisioningUpdates
 
     artifacts:
       - $CM_BUILD_DIR/*.ipa
 
+    code_signing:
+      ios:
+        distribution_type: app_store
+        bundle_identifier: "com.disquietous.HelloWorld"
+        provisioning_profiles: automatic
+
     publishing:
       app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        credentials: codemagic   # 👈 matches your API key name
         submit_to_testflight: true
