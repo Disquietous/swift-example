@@ -7,7 +7,7 @@ workflows:
     scripts:
       - name: Fetch signing files
         script: |
-          xcode-project use-profiles --type app-store
+          xcode-project use-profiles
 
       - name: Build iOS app
         script: |
