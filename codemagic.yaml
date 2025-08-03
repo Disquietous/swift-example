@@ -4,6 +4,13 @@ workflows:
     integrations:
       app_store_connect: codemagic
 
+    environment:
+      vars:
+        XCODE_PROJECT: HelloWorld.xcodeproj
+        XCODE_SCHEME: HelloWorld
+      ios_signing:
+        distribution_type: app-store   # 👈 forces App Store instead of Ad Hoc
+
     scripts:
       - name: Fetch signing files
         script: |
@@ -12,9 +19,8 @@ workflows:
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
-            --project "HelloWorld.xcodeproj" \
-            --scheme "HelloWorld" \
-            --export-method app-store
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
       - $CM_BUILD_DIR/*.ipa
@@ -22,5 +28,5 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
-        api_key: codemagic   # 👈 explicitly point at the integration
+        api_key: codemagic
         submit_to_testflight: true
