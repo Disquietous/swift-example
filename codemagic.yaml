@@ -23,9 +23,6 @@ workflows:
     integrations:
       app_store_connect: codemagic
 
-    code_signing:
-      xcode: automatic
-
     publishing:
       app_store_connect:
         auth: integration
