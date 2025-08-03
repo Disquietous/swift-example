@@ -4,17 +4,23 @@ workflows:
     max_build_duration: 120
     environment:
       vars:
-        XCODE_PROJECT: "HelloWorld.xcodeproj"
-        XCODE_SCHEME: "HelloWorld"
+        XCODE_PROJECT: HelloWorld.xcodeproj
+        XCODE_SCHEME: HelloWorld
       xcode: latest
       cocoapods: default
     scripts:
       - name: Build iOS app
         script: |
-          xcodebuild -project "$XCODE_PROJECT" \
-                     -scheme "$XCODE_SCHEME" \
+          xcodebuild -project $XCODE_PROJECT \
+                     -scheme $XCODE_SCHEME \
                      -sdk iphoneos \
                      -configuration Release \
-                     archive -archivePath $CM_BUILD_DIR/ios.xcarchive
+                     archive -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive
+
+          # Export IPA for distribution
+          xcodebuild -exportArchive \
+                     -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
+                     -exportOptionsPlist ExportOptions.plist \
+                     -exportPath $CM_BUILD_DIR
     artifacts:
-      - $CM_BUILD_DIR/*.xcarchive
+      - $CM_BUILD_DIR/*.ipa
