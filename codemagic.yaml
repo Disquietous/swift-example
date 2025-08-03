@@ -9,7 +9,7 @@ workflows:
         XCODE_PROJECT: HelloWorld.xcodeproj
         XCODE_SCHEME: HelloWorld
       ios_signing:
-        distribution_type: app-store
+        distribution_type: app_store
         bundle_identifier: com.disquietous.HelloWorld   # 👈 required
 
     scripts:
