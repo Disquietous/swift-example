@@ -4,32 +4,18 @@ workflows:
     max_build_duration: 120
 
     environment:
+      xcode: latest
+      cocoapods: default
       vars:
         XCODE_PROJECT: HelloWorld.xcodeproj
         XCODE_SCHEME: HelloWorld
-      xcode: latest
-      cocoapods: default
 
     scripts:
       - name: Build iOS app
         script: |
-          # Let Codemagic handle provisioning with the API key
-          xcode-project use-profiles
-
-          # Build and archive
-          xcodebuild -project $XCODE_PROJECT \
-                     -scheme $XCODE_SCHEME \
-                     -sdk iphoneos \
-                     -configuration Release \
-                     archive \
-                     -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
-                     -allowProvisioningUpdates
-
-          # Export IPA
-          xcodebuild -exportArchive \
-                     -archivePath $CM_BUILD_DIR/HelloWorld.xcarchive \
-                     -exportPath $CM_BUILD_DIR \
-                     -allowProvisioningUpdates
+          xcode-project build-ipa \
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
       - $CM_BUILD_DIR/*.ipa
@@ -37,7 +23,10 @@ workflows:
     integrations:
       app_store_connect: codemagic
 
+    code_signing:
+      xcode: automatic
+
     publishing:
       app_store_connect:
-        auth: integration   # 👈 must match the integration name exactly
+        auth: integration
         submit_to_testflight: true
