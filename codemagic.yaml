@@ -36,5 +36,5 @@ workflows:
 
     publishing:
       app_store_connect:
-        auth: codemagic   # 👈 must match the integration name exactly
+        auth: integration   # 👈 must match the integration name exactly
         submit_to_testflight: true
