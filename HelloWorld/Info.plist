@@ -21,9 +21,12 @@
     <key>MinimumOSVersion</key>
     <string>17.0</string>
 
-    <!-- 👇 Required for iOS 11+ -->
+    <!-- iOS 11+ required -->
     <key>CFBundleIconName</key>
     <string>AppIcon</string>
+
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
 
     <key>CFBundleIcons</key>
     <dict>
