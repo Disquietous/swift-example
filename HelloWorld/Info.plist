@@ -20,6 +20,11 @@
     </array>
     <key>MinimumOSVersion</key>
     <string>17.0</string>
+
+    <!-- 👇 Required for iOS 11+ -->
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+
     <key>CFBundleIcons</key>
     <dict>
         <key>CFBundlePrimaryIcon</key>
