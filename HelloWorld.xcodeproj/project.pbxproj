@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		AA1234567890ABCD /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1234567890ABCC /* HelloWorldApp.swift */; };
 		AA1234567890ABCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1234567890ABCF /* ContentView.swift */; };
+		AACC11112222333344446666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AACC11112222333344445555 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA1234567890ABC9 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1234567890ABCC /* HelloWorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldApp.swift; sourceTree = "<group>"; };
 		AA1234567890ABCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AACC11112222333344445555 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			children = (
 				AA1234567890ABCC /* HelloWorldApp.swift */,
 				AA1234567890ABCF /* ContentView.swift */,
+				AACC11112222333344445555 /* Assets.xcassets */,
 			);
 			path = HelloWorld;
 			sourceTree = "<group>";
@@ -111,6 +114,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACC11112222333344446666 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
