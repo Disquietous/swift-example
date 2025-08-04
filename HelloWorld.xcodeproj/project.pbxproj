@@ -10,15 +10,15 @@
 		AA1234567890ABCD /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1234567890ABCC /* HelloWorldApp.swift */; };
 		AA1234567890ABCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1234567890ABCF /* ContentView.swift */; };
 
-		42CC0ACDA502445AB60B506A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B9391DAEBC499096FFB2FC /* Assets.xcassets */; };
+		9087ADE2F619400B880F5980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C058720A58E04252A3930FCE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA1234567890ABC9 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1234567890ABCC /* HelloWorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldApp.swift; sourceTree = "<group>"; };
-		AA1234567890
-		A1B9391DAEBC499096FFB2FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-ABCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA1234567890ABCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+
+		C058720A58E04252A3930FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +101,7 @@ ABCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sour
 				Base,
 			);
 			mainGroup = AA1234567890ABC0;
-			productRefGroup = AA1234567890ABCA /* P
-				42CC0ACDA502445AB60B506A /* Assets.xcassets in Resources */,roducts */;
+			productRefGroup = AA1234567890ABCA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -119,6 +118,8 @@ ABCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sour
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* Assets.xcassets build phase fix */
+				9087ADE2F619400B880F5980 /* Assets.xcassets in Resources */,
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
